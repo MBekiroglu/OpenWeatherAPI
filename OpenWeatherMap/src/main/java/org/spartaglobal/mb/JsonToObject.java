@@ -1,7 +1,7 @@
 package org.spartaglobal.mb;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.spartaglobal.mb.apistorage.JsonFoundation;
+import org.spartaglobal.mb.apistorage.DataTransferObject;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,96 +16,96 @@ public class JsonToObject {
     private String baseUrl = "http://api.openweathermap.org/data/2.5/weather?";
 
 
-    public JsonFoundation byCityName(String city) {
+    public DataTransferObject byCityName(String city) {
 
         try (InputStream inputStream = new FileInputStream("src/main/java/Resources/key.properties")) {
             apiKey.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        JsonFoundation jsonFoundation = null;
+        DataTransferObject dataTransferObject = null;
         try {
-            jsonFoundation = ob.readValue(new URL(baseUrl + "q=" + city + "&appid=" + apiKey.getProperty("apiKey")), JsonFoundation.class);
+            dataTransferObject = ob.readValue(new URL(baseUrl + "q=" + city + "&appid=" + apiKey.getProperty("apiKey")), DataTransferObject.class);
             //String value = baseUrl + "q=" + city + "&appid=" + apiKey.getProperty("Api Key");
             //System.out.println(value);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jsonFoundation;
+        return dataTransferObject;
     }
 
-    public JsonFoundation byCityName(String city, String state) {
+    public DataTransferObject byCityName(String city, String state) {
         try (InputStream inputStream = new FileInputStream("src/main/java/Resources/key.properties")) {
             apiKey.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        JsonFoundation jsonFoundation = null;
+        DataTransferObject dataTransferObject = null;
         try {
-            jsonFoundation = ob.readValue(new URL(baseUrl + "q=" + city + "," + state + "&appid=" + apiKey.getProperty("apiKey")), JsonFoundation.class);
+            dataTransferObject = ob.readValue(new URL(baseUrl + "q=" + city + "," + state + "&appid=" + apiKey.getProperty("apiKey")), DataTransferObject.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jsonFoundation;
+        return dataTransferObject;
     }
 
-    public JsonFoundation byCityName(String city, String state, int countryCode) {
+    public DataTransferObject byCityName(String city, String state, int countryCode) {
         try (InputStream inputStream = new FileInputStream("src/main/java/Resources/key.properties")) {
             apiKey.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        JsonFoundation jsonFoundation = null;
+        DataTransferObject dataTransferObject = null;
         try {
-            jsonFoundation = ob.readValue(new URL(baseUrl + "q=" + city + "," + state + "," + countryCode + "&appid=" + apiKey.getProperty("apiKey")), JsonFoundation.class);
+            dataTransferObject = ob.readValue(new URL(baseUrl + "q=" + city + "," + state + "," + countryCode + "&appid=" + apiKey.getProperty("apiKey")), DataTransferObject.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jsonFoundation;
+        return dataTransferObject;
     }
 
-    public JsonFoundation byCityID(long id) {
+    public DataTransferObject byCityID(long id) {
         try (InputStream inputStream = new FileInputStream("src/main/java/Resources/key.properties")) {
             apiKey.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        JsonFoundation jsonFoundation = null;
+        DataTransferObject dataTransferObject = null;
         try {
-            jsonFoundation = ob.readValue(new URL(baseUrl + "id=" + id + "&appid=" + apiKey.getProperty("apiKey")), JsonFoundation.class);
+            dataTransferObject = ob.readValue(new URL(baseUrl + "id=" + id + "&appid=" + apiKey.getProperty("apiKey")), DataTransferObject.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jsonFoundation;
+        return dataTransferObject;
     }
 
-    public JsonFoundation byGeographicalCoordinates(double latitude, double longitude) {
+    public DataTransferObject byGeographicalCoordinates(double latitude, double longitude) {
         try (InputStream inputStream = new FileInputStream("src/main/java/Resources/key.properties")) {
             apiKey.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        JsonFoundation jsonFoundation = null;
+        DataTransferObject dataTransferObject = null;
         try {
-            jsonFoundation = ob.readValue(new URL(baseUrl + "lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey.getProperty("apiKey")), JsonFoundation.class);
+            dataTransferObject = ob.readValue(new URL(baseUrl + "lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey.getProperty("apiKey")), DataTransferObject.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jsonFoundation;
+        return dataTransferObject;
     }
 
-    public JsonFoundation byZIPCode(long zipCode, String countryCode) {
+    public DataTransferObject byZIPCode(long zipCode, String countryCode) {
         try (InputStream inputStream = new FileInputStream("src/main/java/Resources/key.properties")) {
             apiKey.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        JsonFoundation jsonFoundation = null;
+        DataTransferObject dataTransferObject = null;
         try {
-            jsonFoundation = ob.readValue(new URL(baseUrl + "zip=" + zipCode + "," + countryCode + "&appid=" + apiKey.getProperty("apiKey")), JsonFoundation.class);
+            dataTransferObject = ob.readValue(new URL(baseUrl + "zip=" + zipCode + "," + countryCode + "&appid=" + apiKey.getProperty("apiKey")), DataTransferObject.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jsonFoundation;
+        return dataTransferObject;
     }
 }
